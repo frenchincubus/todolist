@@ -1,0 +1,49 @@
+<p>personne works!</p>
+<!-- interpolation -->
+<p>Son nom est : {{ nom }}</p>
+
+<p *ngFor="let user of users">
+    nom: {{ user.name }},
+    age: {{ user.age }}
+</p>
+
+<div id="img">
+    <!-- property binding -->
+    <img [src]="img" alt="image de nuages">
+</div>
+
+<!-- event binding -->
+<button (mouseover)="hello()">Clic moi</button>
+
+<!-- two way data binding -->
+<!-- méthode 1 -->
+<input type="text" [value]="message" (input)="message = $event.target.value" name="2wdb" id="2wdb">
+<!-- méthode 2 -->
+<input type="text" name="" [ngModel] = "message" (ngModelChange)="message = $event">
+<p>{{ message }}</p>
+<!-- méthode 3 -->
+<input type="text" name="" [(ngModel)]="message">
+
+<p>
+    {{ message | uppercase }}
+</p>
+<p>
+    {{ nombre | number: '1.1-2' }}
+</p>
+<p>
+    {{ nombre2 | percent }}
+</p>
+
+<p>
+    {{ date | date:'shortTime' }}
+</p>
+
+<p>
+    {{ user | json }}
+</p>
+
+<ng-template [ngIf]="nombre2 > 0" [ngIfElse]="notTrue">
+
+</ng-template>
+
+<ng-template #notTrue></ng-template>
