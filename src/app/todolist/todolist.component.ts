@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from './ITask';
 
 @Component({
   selector: 'app-todolist',
@@ -9,7 +10,7 @@ export class TodolistComponent implements OnInit {
 
   todo: string = '';
 
-  todolist = []
+  todolist: Task[] = [];
 
   constructor() { }
 
@@ -38,22 +39,23 @@ export class TodolistComponent implements OnInit {
 
   // ouvre le mode édition d'une tâche
   goToEdit = (i: number) => {
-    this.todolist[i].edit = true;
+    if(this.todolist[i].done === false)
+      this.todolist[i].edit = true;
   }
 
   // valide la modification d'une tâche
   editTodo = (event, i: number,) => {
-    if(event.keyCode === 13) {
+    // if(event.keyCode === 13) {
       this.todolist[i].edit = false;
     
       console.log(this.todolist);
-    }
+    // }
   }
 
   // trie le tableau
   sortTodolist = (champ: string) => {
     // tri sur le champ todo
-    this.todolist.sort((a, b) => {
+    this.todolist.sort((a: Task, b: Task) => {
       if (champ === 'todo'){
         let x = a.todo.toLowerCase();
         let y = b.todo.toLowerCase();
@@ -62,7 +64,7 @@ export class TodolistComponent implements OnInit {
         return 0;
       } // else tri sur le champ done
       else if(champ === 'done')
-        return (a.done - b.done);
+        return ( +a.done - +b.done);
     });
   }
 

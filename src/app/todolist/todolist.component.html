@@ -1,8 +1,11 @@
 <div class="container">
     <h1 class="center">todolist</h1>
-
-    <input type="text" [(ngModel)]="todo">
-    <button (click)="submit()">Envoyer</button>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Ajoutez une tâche ici" [(ngModel)]="todo" (keydown.enter)="submit()">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="submit()">Envoyer</button> 
+        </div>
+    </div>
     <br><br>
     <div *ngIf="todolist.length > 0">
         <table class="table table-striped table-dark">
@@ -32,7 +35,7 @@
                 <td (click)="goToEdit(i)" class="{{ todo.done ? 'done': 'undone' }} center">
                     <ng-template [ngIf]="todo.edit == false" [ngIfElse]="edition">{{ todo.todo }}</ng-template>
                     <ng-template #edition>
-                        <input type="text" [(ngModel)]="todo.todo" (keydown)="editTodo($event, i)">
+                        <input type="text" [(ngModel)]="todo.todo" (keydown.enter)="editTodo($event, i)">
                     </ng-template>
                 </td>
                 <td> {{ todo.done ? 'fait' : 'pas fait' }}</td>
