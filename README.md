@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
 
+Cette simple todo liste permet d'ajouter une tâche via un champ de saisie. 
+Une fois insérée dans le tableau, chaque tâche peut être modifiée en cliquant sur son nom, ainsi que son état "fait/pas fait".
+Chaque tâche peut être supprimée de la liste.
+Il est possible de trier les tâches par leur nom ou leur état en croissant/décroissant.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -16,6 +16,7 @@ export class TodolistComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // ajoute une tâche au tableau
   submit = () => {
     if(this.todo !== '') {
       this.todolist.push(
@@ -25,18 +26,22 @@ export class TodolistComponent implements OnInit {
     }
   }
 
+  // switch l'état de la tâche choisie done true/false
   done = (i: number) => {
     this.todolist[i].done = !this.todolist[i].done;
   }
 
+  // supprime la tâche choisie
   delete = (i: number) => {
     this.todolist.splice(i, 1);
   }
 
+  // ouvre le mode édition d'une tâche
   goToEdit = (i: number) => {
     this.todolist[i].edit = true;
   }
 
+  // valide la modification d'une tâche
   editTodo = (event, i: number,) => {
     if(event.keyCode === 13) {
       this.todolist[i].edit = false;
@@ -45,8 +50,9 @@ export class TodolistComponent implements OnInit {
     }
   }
 
+  // trie le tableau
   sortTodolist = (champ: string) => {
-
+    // tri sur le champ todo
     this.todolist.sort((a, b) => {
       if (champ === 'todo'){
         let x = a.todo.toLowerCase();
@@ -54,12 +60,13 @@ export class TodolistComponent implements OnInit {
         if (x < y) {return -1;}
         if (x > y) {return 1;}
         return 0;
-      }
+      } // else tri sur le champ done
       else if(champ === 'done')
         return (a.done - b.done);
     });
   }
 
+  // inverse le tri 
   reverseSortTodolist = (champ: string) => {
     this.sortTodolist(champ);
     this.todolist.reverse();
